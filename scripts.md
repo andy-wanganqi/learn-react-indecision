@@ -2,7 +2,7 @@
 npm install -g live-server
 live-server public
 
-# Install babel
+# Install babel 7
 npm install -g babel-cli
 
 # Add packages to project
