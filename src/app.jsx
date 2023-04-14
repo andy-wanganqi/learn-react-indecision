@@ -23,25 +23,41 @@ let user = {
   location: 'Auckland'
 };
 
+function getFullName(user) {
+  if (user && user.firstName && user.lastName) {
+    return <h1>{user.firstName.toUpperCase()}, {user.lastName}</h1>;
+  } else {
+    return <h1>Anonymous</h1>;
+  }
+}
+
+function getLocation(user) {
+  if (user && user.location) {
+    return <p>Location: {user.location}</p>;
+  }
+}
 let template2 = 
 <div>
-  <h1>{user.firstName.toUpperCase()}, {user.lastName}</h1>
+  {getFullName(user)}
   <p>Age: {user.age}</p>
-  <p>Location: {user.location}</p>
+  {(user && user.age >= 18) && <p>Age: {user.age}</p>}
+  {getLocation(user)}
 </div>;
 
-// Create another object: title/subtitle
-// Use title/subtitle into the template
+// only render the subtitle with p tag, if subtitle exists - logical and operator
+// render new p tag - if options.length > 0 show "Here are your options:",
+// otherwise show "No options"
 let obj3 = {
-  title: 'Indecision APp',
-  subtitle: 'Put your life in the hands of a computer'
-}
+  title: 'Indecision App',
+  subtitle: 'Put your life in the hands of a computer',
+  options: ['One', 'Two']
+};
 let template3 = 
 <div>
   <p>{obj3.title.toUpperCase()}</p>
-  <p>{obj3.subtitle.toLowerCase()}</p>
+  {(obj3.subtitle && obj3.subtitle.length > 0) && <p>{obj3.subtitle.toLowerCase()}</p>}
+  {obj3.options && obj3.options.length > 0 ? <p>Here are your options:</p> : <p>No options</p>}
 </div>;
-
 
 let appRoot = document.getElementById('app');
 ReactDOM.render(template3, appRoot);
