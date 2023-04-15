@@ -38,5 +38,31 @@ var obj3 = {
   options: ['One', 'Two']
 };
 var template3 = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", null, obj3.title.toUpperCase()), obj3.subtitle && obj3.subtitle.length > 0 && /*#__PURE__*/React.createElement("p", null, obj3.subtitle.toLowerCase()), obj3.options && obj3.options.length > 0 ? /*#__PURE__*/React.createElement("p", null, "Here are your options:") : /*#__PURE__*/React.createElement("p", null, "No options"));
+var count = 0;
+var minus = function minus() {
+  console.log('> minus');
+  count--;
+};
+var reset = function reset() {
+  console.log('> reset');
+  count = 0;
+};
+var plus = function plus() {
+  console.log('> plus');
+  count++;
+};
+var template4 = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Count: ", count), /*#__PURE__*/React.createElement("button", {
+  id: "minus1",
+  className: "button",
+  onClick: minus
+}, "Minus 1"), /*#__PURE__*/React.createElement("button", {
+  id: "reset1",
+  className: "button",
+  onClick: reset
+}, "Reset"), /*#__PURE__*/React.createElement("button", {
+  id: "plus1",
+  className: "button",
+  onClick: plus
+}, "Plus 1"));
 var appRoot = document.getElementById('app');
-ReactDOM.render(template3, appRoot);
+ReactDOM.render(template4, appRoot);
