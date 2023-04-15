@@ -42,14 +42,17 @@ var count = 0;
 var minus = function minus() {
   console.log('> minus');
   count--;
+  renderApp();
 };
 var reset = function reset() {
   console.log('> reset');
   count = 0;
+  renderApp();
 };
 var plus = function plus() {
   console.log('> plus');
   count++;
+  renderApp();
 };
 var template4 = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Count: ", count), /*#__PURE__*/React.createElement("button", {
   id: "minus1",
@@ -65,4 +68,20 @@ var template4 = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React
   onClick: plus
 }, "Plus 1"));
 var appRoot = document.getElementById('app');
-ReactDOM.render(template4, appRoot);
+var renderApp = function renderApp() {
+  var template = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Count: ", count), /*#__PURE__*/React.createElement("button", {
+    id: "minus1",
+    className: "button",
+    onClick: minus
+  }, "Minus 1"), /*#__PURE__*/React.createElement("button", {
+    id: "reset1",
+    className: "button",
+    onClick: reset
+  }, "Reset"), /*#__PURE__*/React.createElement("button", {
+    id: "plus1",
+    className: "button",
+    onClick: plus
+  }, "Plus 1"));
+  ReactDOM.render(template, appRoot);
+};
+renderApp();
