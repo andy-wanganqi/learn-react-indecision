@@ -21,9 +21,16 @@ var handleRemoveAllOption = function handleRemoveAllOption(e) {
   data.options.splice(0, data.options.length);
   renderApp();
 };
+var handleMakeDecision = function handleMakeDecision(e) {
+  if (data.options && data.options.length > 0) {
+    var pickIndex = Math.floor(Math.random() * data.options.length);
+    var option = data.options[pickIndex];
+    alert(option);
+  }
+};
 var appRoot = document.getElementById('app');
 var renderApp = function renderApp() {
-  var template = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "This is JSX from app.js"), /*#__PURE__*/React.createElement("p", null, "Some info with options: ", data.options.length), data.options && data.options.length > 0 ? /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", null, "Here are your options:"), /*#__PURE__*/React.createElement("ul", null, data.options.map(function (option) {
+  var template = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "This is JSX from app.js"), data.options && data.options.length > 0 ? /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", null, "Here are your options:"), /*#__PURE__*/React.createElement("ul", null, data.options.map(function (option) {
     return /*#__PURE__*/React.createElement("li", {
       key: option
     }, option);
@@ -34,7 +41,10 @@ var renderApp = function renderApp() {
     name: "option"
   }), /*#__PURE__*/React.createElement("button", null, "Add Option"), /*#__PURE__*/React.createElement("div", null), /*#__PURE__*/React.createElement("button", {
     onClick: handleRemoveAllOption
-  }, "Remove All")));
+  }, "Remove All"), /*#__PURE__*/React.createElement("div", null), /*#__PURE__*/React.createElement("button", {
+    disabled: !(data.options && data.options.length > 0),
+    onClick: handleMakeDecision
+  }, "Make Decision")));
   ReactDOM.render(template, appRoot);
 };
 renderApp();

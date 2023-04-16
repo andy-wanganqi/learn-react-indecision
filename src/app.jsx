@@ -23,12 +23,19 @@ const handleRemoveAllOption = (e) => {
   renderApp();
 };
 
+const handleMakeDecision = (e) => {
+  if (data.options && data.options.length > 0) {
+    const pickIndex = Math.floor(Math.random() * data.options.length);
+    const option = data.options[pickIndex];
+    alert(option);
+  }
+};
+
 const appRoot = document.getElementById('app');
 const renderApp = () => {
   const template = 
   <div>
     <h1>This is JSX from app.js</h1>
-    <p>Some info with options: {data.options.length}</p>
     {
       data.options && data.options.length > 0 
         ? <div>
@@ -48,6 +55,8 @@ const renderApp = () => {
       <button>Add Option</button>
       <div></div>
       <button onClick={handleRemoveAllOption}>Remove All</button>
+      <div></div>
+      <button disabled={!(data.options && data.options.length > 0)} onClick={handleMakeDecision}>Make Decision</button>
     </form>
   </div>;
   ReactDOM.render(template, appRoot);
