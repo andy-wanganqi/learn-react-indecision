@@ -29,11 +29,20 @@ const renderApp = () => {
   <div>
     <h1>This is JSX from app.js</h1>
     <p>Some info with options: {data.options.length}</p>
-    {data.options && data.options.length > 0 ? <p>Here are your options:</p> : <p>No options</p>}
-    <ul>
-      <li>Item one</li>
-      <li>Item two</li>
-    </ul>
+    {
+      data.options && data.options.length > 0 
+        ? <div>
+            <p>Here are your options:</p>
+            <ul>
+              {
+                data.options.map((option) => {
+                  return <li key={option}>{option}</li>
+                })
+              }
+            </ul>
+          </div> 
+        : <p>No options</p>
+    }
     <form onSubmit={handleAddOption}>
       <input type="text" name="option"></input>
       <button>Add Option</button>

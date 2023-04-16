@@ -23,7 +23,11 @@ var handleRemoveAllOption = function handleRemoveAllOption(e) {
 };
 var appRoot = document.getElementById('app');
 var renderApp = function renderApp() {
-  var template = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "This is JSX from app.js"), /*#__PURE__*/React.createElement("p", null, "Some info with options: ", data.options.length), data.options && data.options.length > 0 ? /*#__PURE__*/React.createElement("p", null, "Here are your options:") : /*#__PURE__*/React.createElement("p", null, "No options"), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, "Item one"), /*#__PURE__*/React.createElement("li", null, "Item two")), /*#__PURE__*/React.createElement("form", {
+  var template = /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "This is JSX from app.js"), /*#__PURE__*/React.createElement("p", null, "Some info with options: ", data.options.length), data.options && data.options.length > 0 ? /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", null, "Here are your options:"), /*#__PURE__*/React.createElement("ul", null, data.options.map(function (option) {
+    return /*#__PURE__*/React.createElement("li", {
+      key: option
+    }, option);
+  }))) : /*#__PURE__*/React.createElement("p", null, "No options"), /*#__PURE__*/React.createElement("form", {
     onSubmit: handleAddOption
   }, /*#__PURE__*/React.createElement("input", {
     type: "text",
