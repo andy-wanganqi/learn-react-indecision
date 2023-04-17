@@ -10,7 +10,7 @@ class Person {
   }
   getDesc() {
     if (typeof(age) === 'number') {
-      return `${this.name} is ${this.age}${age>1?'s':''} old`;
+      return `${this.name} is year${this.age}${age>1?'s':''} old`;
     } else {
       return `${this.name}'s age is unknown`;
     }
