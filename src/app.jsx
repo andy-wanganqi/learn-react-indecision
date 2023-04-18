@@ -26,16 +26,28 @@ class Header extends React.Component {
 }
 
 class Action extends React.Component {
+  handleMakeDecision() {
+    // console.log('> handleMakeDecision');
+    // if (data.options && data.options.length > 0) {
+    //   const pickIndex = Math.floor(Math.random() * data.options.length);
+    //   const option = data.options[pickIndex];
+    //   alert(option);
+    // }
+  }
   render() {
     return (
       <div>
-        <button>What should I do?</button>
+        <button onClick={this.handleMakeDecision}>What should I do?</button>
       </div>
     )
   }
 }
 
 class Options extends React.Component {
+  handleRemoveAllOption() {
+    // console.log('> handleRemoveAllOption');
+    // data.options.splice(0, data.options.length);
+  }
   render() {
     return (
       <div>
@@ -45,6 +57,7 @@ class Options extends React.Component {
             this.props.options.map((option) => <Option key={option} option={option}></Option>)
           }
         </div>
+        <button onClick={this.handleRemoveAllOption}>Remove All</button>
         <p>No options</p>
       </div> 
     )
@@ -60,14 +73,21 @@ class Option extends React.Component {
 }
 
 class OptionForm extends React.Component {
+  handleAddOption(e) {
+    e.preventDefault();
+    const optionValue = e.target.elements.option.value.trim();
+    console.log('> handleAddOption', optionValue);
+    // if (optionValue) {
+    //   data.options.push(optionValue);
+    //   e.target.elements.option.value = '';
+    // }
+  }
   render() {
     return (
       <div>
-        <form onSubmit={null}>
+        <form onSubmit={this.handleAddOption}>
           <input type="text" name="option"></input>
           <button>Add Option</button>
-          <div></div>
-          <button onClick={null}>Remove All</button>
         </form>
       </div>
     )

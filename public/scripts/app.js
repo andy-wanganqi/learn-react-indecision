@@ -59,9 +59,21 @@ var Action = /*#__PURE__*/function (_React$Component3) {
     return _super3.apply(this, arguments);
   }
   _createClass(Action, [{
+    key: "handleMakeDecision",
+    value: function handleMakeDecision() {
+      // console.log('> handleMakeDecision');
+      // if (data.options && data.options.length > 0) {
+      //   const pickIndex = Math.floor(Math.random() * data.options.length);
+      //   const option = data.options[pickIndex];
+      //   alert(option);
+      // }
+    }
+  }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", null, "What should I do?"));
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
+        onClick: this.handleMakeDecision
+      }, "What should I do?"));
     }
   }]);
   return Action;
@@ -74,6 +86,12 @@ var Options = /*#__PURE__*/function (_React$Component4) {
     return _super4.apply(this, arguments);
   }
   _createClass(Options, [{
+    key: "handleRemoveAllOption",
+    value: function handleRemoveAllOption() {
+      // console.log('> handleRemoveAllOption');
+      // data.options.splice(0, data.options.length);
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", null, "Here are your options:"), /*#__PURE__*/React.createElement("div", null, this.props.options.map(function (option) {
@@ -81,7 +99,9 @@ var Options = /*#__PURE__*/function (_React$Component4) {
           key: option,
           option: option
         });
-      })), /*#__PURE__*/React.createElement("p", null, "No options"));
+      })), /*#__PURE__*/React.createElement("button", {
+        onClick: this.handleRemoveAllOption
+      }, "Remove All"), /*#__PURE__*/React.createElement("p", null, "No options"));
     }
   }]);
   return Options;
@@ -109,16 +129,25 @@ var OptionForm = /*#__PURE__*/function (_React$Component6) {
     return _super6.apply(this, arguments);
   }
   _createClass(OptionForm, [{
+    key: "handleAddOption",
+    value: function handleAddOption(e) {
+      e.preventDefault();
+      var optionValue = e.target.elements.option.value.trim();
+      console.log('> handleAddOption', optionValue);
+      // if (optionValue) {
+      //   data.options.push(optionValue);
+      //   e.target.elements.option.value = '';
+      // }
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("form", {
-        onSubmit: null
+        onSubmit: this.handleAddOption
       }, /*#__PURE__*/React.createElement("input", {
         type: "text",
         name: "option"
-      }), /*#__PURE__*/React.createElement("button", null, "Add Option"), /*#__PURE__*/React.createElement("div", null), /*#__PURE__*/React.createElement("button", {
-        onClick: null
-      }, "Remove All")));
+      }), /*#__PURE__*/React.createElement("button", null, "Add Option")));
     }
   }]);
   return OptionForm;
