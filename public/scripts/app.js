@@ -54,14 +54,17 @@ var Header = /*#__PURE__*/function (_React$Component2) {
 var Action = /*#__PURE__*/function (_React$Component3) {
   _inherits(Action, _React$Component3);
   var _super3 = _createSuper(Action);
-  function Action() {
+  function Action(props) {
+    var _this;
     _classCallCheck(this, Action);
-    return _super3.apply(this, arguments);
+    _this = _super3.call(this, props);
+    _this.handleMakeDecision = _this.handleMakeDecision.bind(_assertThisInitialized(_this));
+    return _this;
   }
   _createClass(Action, [{
     key: "handleMakeDecision",
     value: function handleMakeDecision() {
-      // console.log('> handleMakeDecision');
+      console.log('> handleMakeDecision');
       // if (data.options && data.options.length > 0) {
       //   const pickIndex = Math.floor(Math.random() * data.options.length);
       //   const option = data.options[pickIndex];
@@ -81,14 +84,17 @@ var Action = /*#__PURE__*/function (_React$Component3) {
 var Options = /*#__PURE__*/function (_React$Component4) {
   _inherits(Options, _React$Component4);
   var _super4 = _createSuper(Options);
-  function Options() {
+  function Options(props) {
+    var _this2;
     _classCallCheck(this, Options);
-    return _super4.apply(this, arguments);
+    _this2 = _super4.call(this, props);
+    _this2.handleRemoveAllOption = _this2.handleRemoveAllOption.bind(_assertThisInitialized(_this2));
+    return _this2;
   }
   _createClass(Options, [{
     key: "handleRemoveAllOption",
     value: function handleRemoveAllOption() {
-      // console.log('> handleRemoveAllOption');
+      console.log('> handleRemoveAllOption');
       // data.options.splice(0, data.options.length);
     }
   }, {
@@ -124,9 +130,12 @@ var Option = /*#__PURE__*/function (_React$Component5) {
 var OptionForm = /*#__PURE__*/function (_React$Component6) {
   _inherits(OptionForm, _React$Component6);
   var _super6 = _createSuper(OptionForm);
-  function OptionForm() {
+  function OptionForm(props) {
+    var _this3;
     _classCallCheck(this, OptionForm);
-    return _super6.apply(this, arguments);
+    _this3 = _super6.call(this, props);
+    _this3.handleAddOption = _this3.handleAddOption.bind(_assertThisInitialized(_this3));
+    return _this3;
   }
   _createClass(OptionForm, [{
     key: "handleAddOption",

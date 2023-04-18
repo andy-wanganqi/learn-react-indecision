@@ -26,8 +26,12 @@ class Header extends React.Component {
 }
 
 class Action extends React.Component {
+  constructor(props) {
+    super(props)
+    this.handleMakeDecision = this.handleMakeDecision.bind(this);
+  }
   handleMakeDecision() {
-    // console.log('> handleMakeDecision');
+    console.log('> handleMakeDecision');
     // if (data.options && data.options.length > 0) {
     //   const pickIndex = Math.floor(Math.random() * data.options.length);
     //   const option = data.options[pickIndex];
@@ -44,8 +48,12 @@ class Action extends React.Component {
 }
 
 class Options extends React.Component {
+  constructor(props) {
+    super(props)
+    this.handleRemoveAllOption = this.handleRemoveAllOption.bind(this);
+  }
   handleRemoveAllOption() {
-    // console.log('> handleRemoveAllOption');
+    console.log('> handleRemoveAllOption');
     // data.options.splice(0, data.options.length);
   }
   render() {
@@ -73,6 +81,10 @@ class Option extends React.Component {
 }
 
 class OptionForm extends React.Component {
+  constructor(props) {
+    super(props)
+    this.handleAddOption = this.handleAddOption.bind(this);
+  }
   handleAddOption(e) {
     e.preventDefault();
     const optionValue = e.target.elements.option.value.trim();
