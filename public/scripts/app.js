@@ -23,7 +23,15 @@ var IndecisionApp = /*#__PURE__*/function (_React$Component) {
   _createClass(IndecisionApp, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Header, null), /*#__PURE__*/React.createElement(Action, null), /*#__PURE__*/React.createElement(Options, null), /*#__PURE__*/React.createElement(OptionForm, null));
+      var title = 'Indecision App';
+      var subtitle = 'Put your life in the hands of a computer?';
+      var options = ['Option 1', 'Option 2', 'Option 3'];
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Header, {
+        title: title,
+        subtitle: subtitle
+      }), /*#__PURE__*/React.createElement(Action, null), /*#__PURE__*/React.createElement(Options, {
+        options: options
+      }), /*#__PURE__*/React.createElement(OptionForm, null));
     }
   }]);
   return IndecisionApp;
@@ -38,7 +46,7 @@ var Header = /*#__PURE__*/function (_React$Component2) {
   _createClass(Header, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Indecision App"), /*#__PURE__*/React.createElement("h2", null, "Put your life in the hands of a computer"));
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, this.props.title), /*#__PURE__*/React.createElement("h2", null, this.props.subtitle));
     }
   }]);
   return Header;
@@ -68,7 +76,12 @@ var Options = /*#__PURE__*/function (_React$Component4) {
   _createClass(Options, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", null, "Here are your options:"), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement(Option, null), /*#__PURE__*/React.createElement(Option, null), /*#__PURE__*/React.createElement(Option, null)), /*#__PURE__*/React.createElement("p", null, "No options"));
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", null, "Here are your options:"), /*#__PURE__*/React.createElement("div", null, this.props.options.map(function (option) {
+        return /*#__PURE__*/React.createElement(Option, {
+          key: option,
+          option: option
+        });
+      })), /*#__PURE__*/React.createElement("p", null, "No options"));
     }
   }]);
   return Options;
@@ -83,7 +96,7 @@ var Option = /*#__PURE__*/function (_React$Component5) {
   _createClass(Option, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("li", null, "An Option");
+      return /*#__PURE__*/React.createElement("div", null, this.props.option);
     }
   }]);
   return Option;
