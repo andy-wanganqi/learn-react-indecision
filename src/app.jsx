@@ -1,3 +1,16 @@
+class IndecisionApp extends React.Component {
+  render() {
+    return (
+      <div>
+        <Header />
+        <Action />
+        <Options />
+        <OptionForm />
+      </div>
+    )
+  }
+}
+
 class Header extends React.Component {
   render() {
     return (
@@ -25,11 +38,20 @@ class Options extends React.Component {
       <div>
         <p>Here are your options:</p>
         <ul>
-          <li>A</li>
-          <li>B</li>
+          <Option></Option>
+          <Option></Option>
+          <Option></Option>
         </ul>
         <p>No options</p>
       </div> 
+    )
+  }
+}
+
+class Option extends React.Component {
+  render() {
+    return (
+      <li>An Option</li>
     )
   }
 }
@@ -49,13 +71,4 @@ class OptionForm extends React.Component {
   }
 }
 
-const template = (
-  <div>
-    <h1>Title</h1>
-    <Header />
-    <Action />
-    <Options />
-    <OptionForm />
-  </div>
-)
-ReactDOM.render(template, document.getElementById('app'))
+ReactDOM.render(<IndecisionApp />, document.getElementById('app'))
