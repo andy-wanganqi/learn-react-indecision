@@ -5,7 +5,7 @@ class Person {
     this.name = name;
     this.age = age;
   }
-  gretting() {
+  greeting() {
     return `Hi, this is ${this.name} !`;
   }
   getDesc() {
@@ -39,8 +39,8 @@ class Traveler extends Person {
     super(name, age);
     this.home = home;
   }
-  gretting() {
-    let saying = super.gretting();
+  greeting() {
+    let saying = super.greeting();
     if (this.home) {
       saying += ` I am visiting from ${home}`;
     }
