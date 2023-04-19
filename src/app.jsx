@@ -1,14 +1,50 @@
 class IndecisionApp extends React.Component {
+  constructor(props) {
+    super(props)
+    this.isOptionsValid = this.isOptionsValid.bind(this)
+    this.handleMakeDecision = this.handleMakeDecision.bind(this)
+    this.handleRemoveAllOptions = this.handleRemoveAllOptions.bind(this)
+    this.handleAddOption = this.handleAddOption.bind(this)
+    this.state = {
+      options: ['Option 1', 'Option 2', 'Option 3']
+    }
+  }
+  isOptionsValid() {
+    return this.state.options && this.state.options.length > 0;
+  }
+  handleMakeDecision() {
+    console.log('> handleMakeDecision');
+    if (this.isOptionsValid()) {
+      const pickIndex = Math.floor(Math.random() * this.state.options.length);
+      const option = this.state.options[pickIndex];
+      alert(option);
+    }
+  }
+  handleRemoveAllOptions() {
+    console.log('> handleRemoveAllOptions')
+    this.setState(() => {
+      return {
+        options: []
+      }
+    })
+  }
+  handleAddOption(option) {
+    console.log('> handleAddOption', option)
+    this.setState((prev) => {
+      const newOptions = prev.options
+      newOptions.push(option)
+      return {
+        options: newOptions
+      }
+    })
+  }
   render() {
-    const title = 'Indecision App'
-    const subtitle = 'Put your life in the hands of a computer?'
-    const options = ['Option 1', 'Option 2', 'Option 3']
     return (
       <div>
-        <Header title={title} subtitle={subtitle} />
-        <Action />
-        <Options options={options} />
-        <OptionForm />
+        <Header />
+        <Action isOptionsValid={this.isOptionsValid()} handleMakeDecision={this.handleMakeDecision}/>
+        <Options options={this.state.options} handleRemoveAllOptions={this.handleRemoveAllOptions} />
+        <OptionForm handleAddOption={this.handleAddOption}/>
       </div>
     )
   }
@@ -18,8 +54,8 @@ class Header extends React.Component {
   render() {
     return (
       <div>
-        <h1>{this.props.title}</h1>
-        <h2>{this.props.subtitle}</h2>
+        <h1>Indecision App</h1>
+        <h2>Put your life in the hands of a computer?</h2>
       </div>
     )
   }
@@ -28,34 +64,17 @@ class Header extends React.Component {
 class Action extends React.Component {
   constructor(props) {
     super(props)
-    this.handleMakeDecision = this.handleMakeDecision.bind(this);
-  }
-  handleMakeDecision() {
-    console.log('> handleMakeDecision');
-    // if (data.options && data.options.length > 0) {
-    //   const pickIndex = Math.floor(Math.random() * data.options.length);
-    //   const option = data.options[pickIndex];
-    //   alert(option);
-    // }
   }
   render() {
     return (
       <div>
-        <button onClick={this.handleMakeDecision}>What should I do?</button>
+        <button disabled={!this.props.isOptionsValid} onClick={this.props.handleMakeDecision}>What should I do?</button>
       </div>
     )
   }
 }
 
 class Options extends React.Component {
-  constructor(props) {
-    super(props)
-    this.handleRemoveAllOption = this.handleRemoveAllOption.bind(this);
-  }
-  handleRemoveAllOption() {
-    console.log('> handleRemoveAllOption');
-    // data.options.splice(0, data.options.length);
-  }
   render() {
     return (
       <div>
@@ -65,7 +84,7 @@ class Options extends React.Component {
             this.props.options.map((option) => <Option key={option} option={option}></Option>)
           }
         </div>
-        <button onClick={this.handleRemoveAllOption}>Remove All</button>
+        <button onClick={this.props.handleRemoveAllOptions}>Remove All</button>
         <p>No options</p>
       </div> 
     )
@@ -88,11 +107,10 @@ class OptionForm extends React.Component {
   handleAddOption(e) {
     e.preventDefault();
     const optionValue = e.target.elements.option.value.trim();
-    console.log('> handleAddOption', optionValue);
-    // if (optionValue) {
-    //   data.options.push(optionValue);
-    //   e.target.elements.option.value = '';
-    // }
+    if (optionValue) {
+      this.props.handleAddOption(optionValue)
+      e.target.elements.option.value = '';
+    }
   }
   render() {
     return (

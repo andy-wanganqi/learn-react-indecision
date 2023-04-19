@@ -16,22 +16,68 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 var IndecisionApp = /*#__PURE__*/function (_React$Component) {
   _inherits(IndecisionApp, _React$Component);
   var _super = _createSuper(IndecisionApp);
-  function IndecisionApp() {
+  function IndecisionApp(props) {
+    var _this;
     _classCallCheck(this, IndecisionApp);
-    return _super.apply(this, arguments);
+    _this = _super.call(this, props);
+    _this.isOptionsValid = _this.isOptionsValid.bind(_assertThisInitialized(_this));
+    _this.handleMakeDecision = _this.handleMakeDecision.bind(_assertThisInitialized(_this));
+    _this.handleRemoveAllOptions = _this.handleRemoveAllOptions.bind(_assertThisInitialized(_this));
+    _this.handleAddOption = _this.handleAddOption.bind(_assertThisInitialized(_this));
+    _this.state = {
+      options: ['Option 1', 'Option 2', 'Option 3']
+    };
+    return _this;
   }
   _createClass(IndecisionApp, [{
+    key: "isOptionsValid",
+    value: function isOptionsValid() {
+      return this.state.options && this.state.options.length > 0;
+    }
+  }, {
+    key: "handleMakeDecision",
+    value: function handleMakeDecision() {
+      console.log('> handleMakeDecision');
+      if (this.isOptionsValid()) {
+        var pickIndex = Math.floor(Math.random() * this.state.options.length);
+        var option = this.state.options[pickIndex];
+        alert(option);
+      }
+    }
+  }, {
+    key: "handleRemoveAllOptions",
+    value: function handleRemoveAllOptions() {
+      console.log('> handleRemoveAllOptions');
+      this.setState(function () {
+        return {
+          options: []
+        };
+      });
+    }
+  }, {
+    key: "handleAddOption",
+    value: function handleAddOption(option) {
+      console.log('> handleAddOption', option);
+      this.setState(function (prev) {
+        var newOptions = prev.options;
+        newOptions.push(option);
+        return {
+          options: newOptions
+        };
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      var title = 'Indecision App';
-      var subtitle = 'Put your life in the hands of a computer?';
-      var options = ['Option 1', 'Option 2', 'Option 3'];
-      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Header, {
-        title: title,
-        subtitle: subtitle
-      }), /*#__PURE__*/React.createElement(Action, null), /*#__PURE__*/React.createElement(Options, {
-        options: options
-      }), /*#__PURE__*/React.createElement(OptionForm, null));
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Header, null), /*#__PURE__*/React.createElement(Action, {
+        isOptionsValid: this.isOptionsValid(),
+        handleMakeDecision: this.handleMakeDecision
+      }), /*#__PURE__*/React.createElement(Options, {
+        options: this.state.options,
+        handleRemoveAllOptions: this.handleRemoveAllOptions
+      }), /*#__PURE__*/React.createElement(OptionForm, {
+        handleAddOption: this.handleAddOption
+      }));
     }
   }]);
   return IndecisionApp;
@@ -46,7 +92,7 @@ var Header = /*#__PURE__*/function (_React$Component2) {
   _createClass(Header, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, this.props.title), /*#__PURE__*/React.createElement("h2", null, this.props.subtitle));
+      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Indecision App"), /*#__PURE__*/React.createElement("h2", null, "Put your life in the hands of a computer?"));
     }
   }]);
   return Header;
@@ -55,27 +101,15 @@ var Action = /*#__PURE__*/function (_React$Component3) {
   _inherits(Action, _React$Component3);
   var _super3 = _createSuper(Action);
   function Action(props) {
-    var _this;
     _classCallCheck(this, Action);
-    _this = _super3.call(this, props);
-    _this.handleMakeDecision = _this.handleMakeDecision.bind(_assertThisInitialized(_this));
-    return _this;
+    return _super3.call(this, props);
   }
   _createClass(Action, [{
-    key: "handleMakeDecision",
-    value: function handleMakeDecision() {
-      console.log('> handleMakeDecision');
-      // if (data.options && data.options.length > 0) {
-      //   const pickIndex = Math.floor(Math.random() * data.options.length);
-      //   const option = data.options[pickIndex];
-      //   alert(option);
-      // }
-    }
-  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
-        onClick: this.handleMakeDecision
+        disabled: !this.props.isOptionsValid,
+        onClick: this.props.handleMakeDecision
       }, "What should I do?"));
     }
   }]);
@@ -84,20 +118,11 @@ var Action = /*#__PURE__*/function (_React$Component3) {
 var Options = /*#__PURE__*/function (_React$Component4) {
   _inherits(Options, _React$Component4);
   var _super4 = _createSuper(Options);
-  function Options(props) {
-    var _this2;
+  function Options() {
     _classCallCheck(this, Options);
-    _this2 = _super4.call(this, props);
-    _this2.handleRemoveAllOption = _this2.handleRemoveAllOption.bind(_assertThisInitialized(_this2));
-    return _this2;
+    return _super4.apply(this, arguments);
   }
   _createClass(Options, [{
-    key: "handleRemoveAllOption",
-    value: function handleRemoveAllOption() {
-      console.log('> handleRemoveAllOption');
-      // data.options.splice(0, data.options.length);
-    }
-  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", null, "Here are your options:"), /*#__PURE__*/React.createElement("div", null, this.props.options.map(function (option) {
@@ -106,7 +131,7 @@ var Options = /*#__PURE__*/function (_React$Component4) {
           option: option
         });
       })), /*#__PURE__*/React.createElement("button", {
-        onClick: this.handleRemoveAllOption
+        onClick: this.props.handleRemoveAllOptions
       }, "Remove All"), /*#__PURE__*/React.createElement("p", null, "No options"));
     }
   }]);
@@ -131,22 +156,21 @@ var OptionForm = /*#__PURE__*/function (_React$Component6) {
   _inherits(OptionForm, _React$Component6);
   var _super6 = _createSuper(OptionForm);
   function OptionForm(props) {
-    var _this3;
+    var _this2;
     _classCallCheck(this, OptionForm);
-    _this3 = _super6.call(this, props);
-    _this3.handleAddOption = _this3.handleAddOption.bind(_assertThisInitialized(_this3));
-    return _this3;
+    _this2 = _super6.call(this, props);
+    _this2.handleAddOption = _this2.handleAddOption.bind(_assertThisInitialized(_this2));
+    return _this2;
   }
   _createClass(OptionForm, [{
     key: "handleAddOption",
     value: function handleAddOption(e) {
       e.preventDefault();
       var optionValue = e.target.elements.option.value.trim();
-      console.log('> handleAddOption', optionValue);
-      // if (optionValue) {
-      //   data.options.push(optionValue);
-      //   e.target.elements.option.value = '';
-      // }
+      if (optionValue) {
+        this.props.handleAddOption(optionValue);
+        e.target.elements.option.value = '';
+      }
     }
   }, {
     key: "render",
