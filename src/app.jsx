@@ -52,58 +52,98 @@ class IndecisionApp extends React.Component {
   }
 }
 
-class Header extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>Indecision App</h1>
-        <h2>Put your life in the hands of a computer?</h2>
-      </div>
-    )
-  }
+// class Header extends React.Component {
+//   render() {
+//     return (
+//       <div>
+//         <h1>Indecision App</h1>
+//         <h2>Put your life in the hands of a computer?</h2>
+//       </div>
+//     )
+//   }
+// }
+
+const Header = () => {
+  return (
+    <div>
+      <h1>Indecision App</h1>
+      <h2>Put your life in the hands of a computer?</h2>
+    </div>
+  )
 }
 
-class Action extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-  render() {
-    return (
-      <div>
-        <button disabled={!this.props.isOptionsValid} onClick={this.props.handleMakeDecision}>What should I do?</button>
-      </div>
-    )
-  }
+// class Action extends React.Component {
+//   render() {
+//     return (
+//       <div>
+//         <button disabled={!this.props.isOptionsValid} onClick={this.props.handleMakeDecision}>What should I do?</button>
+//       </div>
+//     )
+//   }
+// }
+
+const Action = (props) => {
+  return (
+    <div>
+      <button disabled={!props.isOptionsValid} onClick={props.handleMakeDecision}>What should I do?</button>
+    </div>
+  )
 }
 
-class Options extends React.Component {
-  render() {
-    if (this.props.options.length > 0) {
-      return (
+// class Options extends React.Component {
+//   render() {
+//     if (this.props.options.length > 0) {
+//       return (
+//         <div>
+//           <p>Here are your options:</p>
+//           <div>
+//             {
+//               this.props.options.map((option) => <Option key={option} option={option}></Option>)
+//             }
+//           </div>
+//           <button onClick={this.props.handleRemoveAllOptions}>Remove All</button>
+//         </div> 
+//       )
+//     } else {
+//       return (
+//         <p>No options</p>
+//       )
+//     }
+//   }
+// }
+
+const Options = (props) => {
+  if (props.options.length > 0) {
+    return (
+      <div>
+        <p>Here are your options:</p>
         <div>
-          <p>Here are your options:</p>
-          <div>
-            {
-              this.props.options.map((option) => <Option key={option} option={option}></Option>)
-            }
-          </div>
-          <button onClick={this.props.handleRemoveAllOptions}>Remove All</button>
-        </div> 
-      )
-    } else {
-      return (
-        <p>No options</p>
-      )
-    }
+          {
+            props.options.map((option) => <Option key={option} option={option}></Option>)
+          }
+        </div>
+        <button onClick={props.handleRemoveAllOptions}>Remove All</button>
+      </div> 
+    )
+  } else {
+    return (
+      <p>No options</p>
+    )
   }
 }
 
-class Option extends React.Component {
-  render() {
-    return (
-      <div>{this.props.option}</div>
-    )
-  }
+// class Option extends React.Component {
+//   render() {
+//     return (
+//       <div>{this.props.option}</div>
+//     )
+//   }
+// }
+
+const Option = (props) => {
+  return (
+    <div>{props.option}</div>
+  )
 }
 
 class OptionForm extends React.Component {

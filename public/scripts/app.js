@@ -83,88 +83,92 @@ var IndecisionApp = /*#__PURE__*/function (_React$Component) {
     }
   }]);
   return IndecisionApp;
-}(React.Component);
-var Header = /*#__PURE__*/function (_React$Component2) {
-  _inherits(Header, _React$Component2);
-  var _super2 = _createSuper(Header);
-  function Header() {
-    _classCallCheck(this, Header);
-    return _super2.apply(this, arguments);
+}(React.Component); // class Header extends React.Component {
+//   render() {
+//     return (
+//       <div>
+//         <h1>Indecision App</h1>
+//         <h2>Put your life in the hands of a computer?</h2>
+//       </div>
+//     )
+//   }
+// }
+var Header = function Header() {
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Indecision App"), /*#__PURE__*/React.createElement("h2", null, "Put your life in the hands of a computer?"));
+};
+
+// class Action extends React.Component {
+//   render() {
+//     return (
+//       <div>
+//         <button disabled={!this.props.isOptionsValid} onClick={this.props.handleMakeDecision}>What should I do?</button>
+//       </div>
+//     )
+//   }
+// }
+
+var Action = function Action(props) {
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
+    disabled: !props.isOptionsValid,
+    onClick: props.handleMakeDecision
+  }, "What should I do?"));
+};
+
+// class Options extends React.Component {
+//   render() {
+//     if (this.props.options.length > 0) {
+//       return (
+//         <div>
+//           <p>Here are your options:</p>
+//           <div>
+//             {
+//               this.props.options.map((option) => <Option key={option} option={option}></Option>)
+//             }
+//           </div>
+//           <button onClick={this.props.handleRemoveAllOptions}>Remove All</button>
+//         </div> 
+//       )
+//     } else {
+//       return (
+//         <p>No options</p>
+//       )
+//     }
+//   }
+// }
+
+var Options = function Options(props) {
+  if (props.options.length > 0) {
+    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", null, "Here are your options:"), /*#__PURE__*/React.createElement("div", null, props.options.map(function (option) {
+      return /*#__PURE__*/React.createElement(Option, {
+        key: option,
+        option: option
+      });
+    })), /*#__PURE__*/React.createElement("button", {
+      onClick: props.handleRemoveAllOptions
+    }, "Remove All"));
+  } else {
+    return /*#__PURE__*/React.createElement("p", null, "No options");
   }
-  _createClass(Header, [{
-    key: "render",
-    value: function render() {
-      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Indecision App"), /*#__PURE__*/React.createElement("h2", null, "Put your life in the hands of a computer?"));
-    }
-  }]);
-  return Header;
-}(React.Component);
-var Action = /*#__PURE__*/function (_React$Component3) {
-  _inherits(Action, _React$Component3);
-  var _super3 = _createSuper(Action);
-  function Action(props) {
-    _classCallCheck(this, Action);
-    return _super3.call(this, props);
-  }
-  _createClass(Action, [{
-    key: "render",
-    value: function render() {
-      return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
-        disabled: !this.props.isOptionsValid,
-        onClick: this.props.handleMakeDecision
-      }, "What should I do?"));
-    }
-  }]);
-  return Action;
-}(React.Component);
-var Options = /*#__PURE__*/function (_React$Component4) {
-  _inherits(Options, _React$Component4);
-  var _super4 = _createSuper(Options);
-  function Options() {
-    _classCallCheck(this, Options);
-    return _super4.apply(this, arguments);
-  }
-  _createClass(Options, [{
-    key: "render",
-    value: function render() {
-      if (this.props.options.length > 0) {
-        return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", null, "Here are your options:"), /*#__PURE__*/React.createElement("div", null, this.props.options.map(function (option) {
-          return /*#__PURE__*/React.createElement(Option, {
-            key: option,
-            option: option
-          });
-        })), /*#__PURE__*/React.createElement("button", {
-          onClick: this.props.handleRemoveAllOptions
-        }, "Remove All"));
-      } else {
-        return /*#__PURE__*/React.createElement("p", null, "No options");
-      }
-    }
-  }]);
-  return Options;
-}(React.Component);
-var Option = /*#__PURE__*/function (_React$Component5) {
-  _inherits(Option, _React$Component5);
-  var _super5 = _createSuper(Option);
-  function Option() {
-    _classCallCheck(this, Option);
-    return _super5.apply(this, arguments);
-  }
-  _createClass(Option, [{
-    key: "render",
-    value: function render() {
-      return /*#__PURE__*/React.createElement("div", null, this.props.option);
-    }
-  }]);
-  return Option;
-}(React.Component);
-var OptionForm = /*#__PURE__*/function (_React$Component6) {
-  _inherits(OptionForm, _React$Component6);
-  var _super6 = _createSuper(OptionForm);
+};
+
+// class Option extends React.Component {
+//   render() {
+//     return (
+//       <div>{this.props.option}</div>
+//     )
+//   }
+// }
+
+var Option = function Option(props) {
+  return /*#__PURE__*/React.createElement("div", null, props.option);
+};
+var OptionForm = /*#__PURE__*/function (_React$Component2) {
+  _inherits(OptionForm, _React$Component2);
+  var _super2 = _createSuper(OptionForm);
   function OptionForm(props) {
     var _this2;
     _classCallCheck(this, OptionForm);
-    _this2 = _super6.call(this, props);
+    _this2 = _super2.call(this, props);
     _this2.handleAddOption = _this2.handleAddOption.bind(_assertThisInitialized(_this2));
     _this2.state = {
       error: ''
