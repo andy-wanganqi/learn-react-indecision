@@ -48,4 +48,7 @@ class Counter extends React.Component {
   }
 }
 
+Counter.defaultProps = {
+  count: 100
+}
 ReactDOM.render(<Counter count={1} />, document.getElementById('app'))

@@ -204,6 +204,9 @@ var OptionForm = /*#__PURE__*/function (_React$Component2) {
   }]);
   return OptionForm;
 }(React.Component);
+IndecisionApp.defaultProps = {
+  options: ['Option A', 'Option B']
+};
 ReactDOM.render( /*#__PURE__*/React.createElement(IndecisionApp, {
   options: ['Option A', 'Option B']
 }), document.getElementById('app'));

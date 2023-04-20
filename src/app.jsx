@@ -181,4 +181,7 @@ class OptionForm extends React.Component {
   }
 }
 
+IndecisionApp.defaultProps = {
+  options: ['Option A', 'Option B']
+}
 ReactDOM.render(<IndecisionApp options={['Option A', 'Option B']}/>, document.getElementById('app'))
