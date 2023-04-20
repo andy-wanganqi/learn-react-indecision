@@ -24,6 +24,7 @@ var IndecisionApp = /*#__PURE__*/function (_React$Component) {
     _this.handleMakeDecision = _this.handleMakeDecision.bind(_assertThisInitialized(_this));
     _this.handleRemoveAllOptions = _this.handleRemoveAllOptions.bind(_assertThisInitialized(_this));
     _this.handleAddOption = _this.handleAddOption.bind(_assertThisInitialized(_this));
+    _this.handleRemoveOption = _this.handleRemoveOption.bind(_assertThisInitialized(_this));
     _this.state = {
       options: props.options
     };
@@ -69,6 +70,19 @@ var IndecisionApp = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "handleRemoveOption",
+    value: function handleRemoveOption(optionToRemove) {
+      if (optionToRemove && this.state.options.indexOf(optionToRemove) > -1) {
+        this.setState(function (prev) {
+          return {
+            options: prev.options.filter(function (option) {
+              return optionToRemove !== option;
+            })
+          };
+        });
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Header, null), /*#__PURE__*/React.createElement(Action, {
@@ -76,75 +90,34 @@ var IndecisionApp = /*#__PURE__*/function (_React$Component) {
         handleMakeDecision: this.handleMakeDecision
       }), /*#__PURE__*/React.createElement(Options, {
         options: this.state.options,
-        handleRemoveAllOptions: this.handleRemoveAllOptions
+        handleRemoveAllOptions: this.handleRemoveAllOptions,
+        handleRemoveOption: this.handleRemoveOption
       }), /*#__PURE__*/React.createElement(OptionForm, {
         handleAddOption: this.handleAddOption
       }));
     }
   }]);
   return IndecisionApp;
-}(React.Component); // class Header extends React.Component {
-//   render() {
-//     return (
-//       <div>
-//         <h1>Indecision App</h1>
-//         <h2>Put your life in the hands of a computer?</h2>
-//       </div>
-//     )
-//   }
-// }
+}(React.Component);
 var Header = function Header(props) {
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, props.title), /*#__PURE__*/React.createElement("h2", null, "Put your life in the hands of a computer?"));
 };
 Header.defaultProps = {
   title: "Indecision App"
 };
-
-// class Action extends React.Component {
-//   render() {
-//     return (
-//       <div>
-//         <button disabled={!this.props.isOptionsValid} onClick={this.props.handleMakeDecision}>What should I do?</button>
-//       </div>
-//     )
-//   }
-// }
-
 var Action = function Action(props) {
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
     disabled: !props.isOptionsValid,
     onClick: props.handleMakeDecision
   }, "What should I do?"));
 };
-
-// class Options extends React.Component {
-//   render() {
-//     if (this.props.options.length > 0) {
-//       return (
-//         <div>
-//           <p>Here are your options:</p>
-//           <div>
-//             {
-//               this.props.options.map((option) => <Option key={option} option={option}></Option>)
-//             }
-//           </div>
-//           <button onClick={this.props.handleRemoveAllOptions}>Remove All</button>
-//         </div> 
-//       )
-//     } else {
-//       return (
-//         <p>No options</p>
-//       )
-//     }
-//   }
-// }
-
 var Options = function Options(props) {
   if (props.options.length > 0) {
     return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", null, "Here are your options:"), /*#__PURE__*/React.createElement("div", null, props.options.map(function (option) {
       return /*#__PURE__*/React.createElement(Option, {
         key: option,
-        option: option
+        option: option,
+        handleRemoveOption: props.handleRemoveOption
       });
     })), /*#__PURE__*/React.createElement("button", {
       onClick: props.handleRemoveAllOptions
@@ -153,17 +126,12 @@ var Options = function Options(props) {
     return /*#__PURE__*/React.createElement("p", null, "No options");
   }
 };
-
-// class Option extends React.Component {
-//   render() {
-//     return (
-//       <div>{this.props.option}</div>
-//     )
-//   }
-// }
-
 var Option = function Option(props) {
-  return /*#__PURE__*/React.createElement("div", null, props.option);
+  return /*#__PURE__*/React.createElement("div", null, props.option, /*#__PURE__*/React.createElement("button", {
+    onClick: function onClick(e) {
+      props.handleRemoveOption(props.option);
+    }
+  }, "remove"));
 };
 var OptionForm = /*#__PURE__*/function (_React$Component2) {
   _inherits(OptionForm, _React$Component2);
