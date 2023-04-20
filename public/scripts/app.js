@@ -25,7 +25,7 @@ var IndecisionApp = /*#__PURE__*/function (_React$Component) {
     _this.handleRemoveAllOptions = _this.handleRemoveAllOptions.bind(_assertThisInitialized(_this));
     _this.handleAddOption = _this.handleAddOption.bind(_assertThisInitialized(_this));
     _this.state = {
-      options: []
+      options: props.options
     };
     return _this;
   }
@@ -93,8 +93,11 @@ var IndecisionApp = /*#__PURE__*/function (_React$Component) {
 //     )
 //   }
 // }
-var Header = function Header() {
-  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Indecision App"), /*#__PURE__*/React.createElement("h2", null, "Put your life in the hands of a computer?"));
+var Header = function Header(props) {
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, props.title), /*#__PURE__*/React.createElement("h2", null, "Put your life in the hands of a computer?"));
+};
+Header.defaultProps = {
+  title: "Indecision App"
 };
 
 // class Action extends React.Component {
@@ -201,4 +204,6 @@ var OptionForm = /*#__PURE__*/function (_React$Component2) {
   }]);
   return OptionForm;
 }(React.Component);
-ReactDOM.render( /*#__PURE__*/React.createElement(IndecisionApp, null), document.getElementById('app'));
+ReactDOM.render( /*#__PURE__*/React.createElement(IndecisionApp, {
+  options: ['Option A', 'Option B']
+}), document.getElementById('app'));

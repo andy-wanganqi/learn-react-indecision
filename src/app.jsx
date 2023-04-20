@@ -6,7 +6,7 @@ class IndecisionApp extends React.Component {
     this.handleRemoveAllOptions = this.handleRemoveAllOptions.bind(this)
     this.handleAddOption = this.handleAddOption.bind(this)
     this.state = {
-      options: []
+      options: props.options
     }
   }
   isOptionsValid() {
@@ -63,13 +63,16 @@ class IndecisionApp extends React.Component {
 //   }
 // }
 
-const Header = () => {
+const Header = (props) => {
   return (
     <div>
-      <h1>Indecision App</h1>
+      <h1>{props.title}</h1>
       <h2>Put your life in the hands of a computer?</h2>
     </div>
   )
+}
+Header.defaultProps = {
+  title: "Indecision App"
 }
 
 // class Action extends React.Component {
@@ -178,4 +181,4 @@ class OptionForm extends React.Component {
   }
 }
 
-ReactDOM.render(<IndecisionApp />, document.getElementById('app'))
+ReactDOM.render(<IndecisionApp options={['Option A', 'Option B']}/>, document.getElementById('app'))

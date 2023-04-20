@@ -20,12 +20,6 @@ class Counter extends React.Component {
   }
   handleReset(){
     console.log('> handleReset')
-    // this.setState((prev) => {
-    //   return {
-    //     count: 0
-    //   }
-    // })
-
     // First one runs async and will not really update state immediately inside handleReset()
     this.setState({
       count: 0
@@ -54,4 +48,4 @@ class Counter extends React.Component {
   }
 }
 
-ReactDOM.render(<Counter />, document.getElementById('app'))
+ReactDOM.render(<Counter count={1} />, document.getElementById('app'))
