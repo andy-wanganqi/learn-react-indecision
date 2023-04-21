@@ -7,16 +7,28 @@ class IndecisionApp extends React.Component {
     this.handleAddOption = this.handleAddOption.bind(this)
     this.handleRemoveOption = this.handleRemoveOption.bind(this)
     this.state = {
-      options: props.options
+      options: []
     }
   }
   componentDidMount() {
     console.log('IndecisionApp', 'componentDidMount')
-    // TODO: Fetching data from local storage
+    try {
+      const optionsJson = localStorage.getItem('options')
+      const options = JSON.parse(optionsJson)
+      if (options) {
+        this.setState(() => ({
+          options
+        }))
+      }
+    } catch (ex) {
+      // Do nothing
+    }
   }
   componentDidUpdate(prevProps, prevState) {
     console.log('IndecisionApp', 'componentDidUpdate')
-    // TODO: Saving to local storage
+    if (prevState.options.length !== this.state.options.length) {
+      localStorage.setItem('options', JSON.stringify(this.state.options))
+    }
   }
   componentWillUnmount() {
     console.log('IndecisionApp', 'componentWillUnmount')
@@ -62,7 +74,7 @@ class IndecisionApp extends React.Component {
       <div>
         <Header />
         <Action isOptionsValid={this.isOptionsValid()} handleMakeDecision={this.handleMakeDecision}/>
-        <Options options={this.state.options} 
+        <Options options={this.state.options}
           handleRemoveAllOptions={this.handleRemoveAllOptions} 
           handleRemoveOption={this.handleRemoveOption}
         />
@@ -153,7 +165,4 @@ class OptionForm extends React.Component {
   }
 }
 
-IndecisionApp.defaultProps = {
-  options: ['Option A', 'Option B']
-}
-ReactDOM.render(<IndecisionApp options={['Option A', 'Option B']}/>, document.getElementById('app'))
+ReactDOM.render(<IndecisionApp />, document.getElementById('app'))

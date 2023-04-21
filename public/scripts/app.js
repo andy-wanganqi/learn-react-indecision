@@ -26,7 +26,7 @@ var IndecisionApp = /*#__PURE__*/function (_React$Component) {
     _this.handleAddOption = _this.handleAddOption.bind(_assertThisInitialized(_this));
     _this.handleRemoveOption = _this.handleRemoveOption.bind(_assertThisInitialized(_this));
     _this.state = {
-      options: props.options
+      options: []
     };
     return _this;
   }
@@ -34,13 +34,27 @@ var IndecisionApp = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       console.log('IndecisionApp', 'componentDidMount');
-      // TODO: Fetching data from local storage
+      try {
+        var optionsJson = localStorage.getItem('options');
+        var options = JSON.parse(optionsJson);
+        if (options) {
+          this.setState(function () {
+            return {
+              options: options
+            };
+          });
+        }
+      } catch (ex) {
+        // Do nothing
+      }
     }
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps, prevState) {
       console.log('IndecisionApp', 'componentDidUpdate');
-      // TODO: Saving to local storage
+      if (prevState.options.length !== this.state.options.length) {
+        localStorage.setItem('options', JSON.stringify(this.state.options));
+      }
     }
   }, {
     key: "componentWillUnmount",
@@ -189,9 +203,4 @@ var OptionForm = /*#__PURE__*/function (_React$Component2) {
   }]);
   return OptionForm;
 }(React.Component);
-IndecisionApp.defaultProps = {
-  options: ['Option A', 'Option B']
-};
-ReactDOM.render( /*#__PURE__*/React.createElement(IndecisionApp, {
-  options: ['Option A', 'Option B']
-}), document.getElementById('app'));
+ReactDOM.render( /*#__PURE__*/React.createElement(IndecisionApp, null), document.getElementById('app'));
