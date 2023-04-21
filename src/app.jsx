@@ -10,6 +10,17 @@ class IndecisionApp extends React.Component {
       options: props.options
     }
   }
+  componentDidMount() {
+    console.log('IndecisionApp', 'componentDidMount')
+    // TODO: Fetching data from local storage
+  }
+  componentDidUpdate(prevProps, prevState) {
+    console.log('IndecisionApp', 'componentDidUpdate')
+    // TODO: Saving to local storage
+  }
+  componentWillUnmount() {
+    console.log('IndecisionApp', 'componentWillUnmount')
+  }
   isOptionsValid() {
     return this.state.options && this.state.options.length > 0;
   }

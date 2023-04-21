@@ -31,6 +31,23 @@ var IndecisionApp = /*#__PURE__*/function (_React$Component) {
     return _this;
   }
   _createClass(IndecisionApp, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      console.log('IndecisionApp', 'componentDidMount');
+      // TODO: Fetching data from local storage
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps, prevState) {
+      console.log('IndecisionApp', 'componentDidUpdate');
+      // TODO: Saving to local storage
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      console.log('IndecisionApp', 'componentWillUnmount');
+    }
+  }, {
     key: "isOptionsValid",
     value: function isOptionsValid() {
       return this.state.options && this.state.options.length > 0;
