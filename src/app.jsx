@@ -21,3 +21,5 @@ console.log('isSenior: ', isSenior(70))
 console.log('isEmail: ', validator.isEmail('aaa@gmail.com'))
 
 // git rebase test
+const template = <p>This is a template</p>
+ReactDOM.render(template, document.getElementById('app'))
