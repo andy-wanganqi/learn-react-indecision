@@ -6,6 +6,8 @@ live-server public
 npm install -D babel-cli
 
 # Add packages to project
-npm install -D @babel/cli @babel/core
-npm install -D @babel/preset-env @babel/preset-react
+npm install -D @babel/cli @babel/core @babel/preset-env @babel/preset-react
 babel src/app.jsx --out-file=public/scripts/app.js --watch
+
+# Install webpack
+npm install -D webpack webpack-cli
