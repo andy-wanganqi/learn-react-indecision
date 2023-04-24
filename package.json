@@ -4,13 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "live-server": "live-server public",
+    "babel-cli": "babel src/app.jsx --out-file=public/scripts/app.js --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Andy Wang",
   "license": "MIT",
   "devDependencies": {
+    "@babel/cli": "^7.21.0",
+    "@babel/core": "^7.21.4",
     "@babel/preset-env": "^7.21.4",
-    "@babel/preset-react": "^7.18.6"
+    "@babel/preset-react": "^7.18.6",
+    "babel-cli": "^6.26.0",
+    "live-server": "^1.2.2"
   },
   "dependencies": {
     "lodash": "^4.17.21"
