@@ -1,14 +1,10 @@
 import React from "react"
 
 class OptionForm extends React.Component {
-  constructor(props) {
-    super(props)
-    this.handleAddOption = this.handleAddOption.bind(this);
-    this.state = {
-      error: ''
-    }
+  state = {
+    error: ''
   }
-  handleAddOption(e) {
+  handleAddOption = (e) => {
     e.preventDefault();
     const option = e.target.elements.option.value.trim();
     e.target.elements.option.value = '';

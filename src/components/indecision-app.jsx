@@ -5,16 +5,8 @@ import Options from './options.jsx'
 import OptionForm from './option-form.jsx'
 
 class IndecisionApp extends React.Component {
-  constructor(props) {
-    super(props)
-    this.isOptionsValid = this.isOptionsValid.bind(this)
-    this.handleMakeDecision = this.handleMakeDecision.bind(this)
-    this.handleRemoveAllOptions = this.handleRemoveAllOptions.bind(this)
-    this.handleAddOption = this.handleAddOption.bind(this)
-    this.handleRemoveOption = this.handleRemoveOption.bind(this)
-    this.state = {
-      options: []
-    }
+  state = {
+    options: []
   }
   componentDidMount() {
     console.log('IndecisionApp', 'componentDidMount')
@@ -39,22 +31,22 @@ class IndecisionApp extends React.Component {
   componentWillUnmount() {
     console.log('IndecisionApp', 'componentWillUnmount')
   }
-  isOptionsValid() {
+  isOptionsValid = () => {
     return this.state.options && this.state.options.length > 0;
   }
-  handleMakeDecision() {
+  handleMakeDecision = () => {
     if (this.isOptionsValid()) {
       const pickIndex = Math.floor(Math.random() * this.state.options.length);
       const option = this.state.options[pickIndex];
       alert(option);
     }
   }
-  handleRemoveAllOptions() {
+  handleRemoveAllOptions = () => {
     this.setState(() => ({
       options: []
     }))
   }
-  handleAddOption(option) {
+  handleAddOption = (option) => {
     // Validate
     if (!option) {
       return 'Option should be not empty.'
@@ -66,7 +58,7 @@ class IndecisionApp extends React.Component {
       options: prev.options.concat(option)
     }))
   }
-  handleRemoveOption(optionToRemove) {
+  handleRemoveOption = (optionToRemove) => {
     if(optionToRemove && this.state.options.indexOf(optionToRemove)> -1) {
       this.setState((prev) => {
         return {
