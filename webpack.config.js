@@ -13,5 +13,12 @@ module.exports = {
       exclude: /node_modules/
     }]
   },
-  devtool: 'source-map'
+  devtool: 'source-map',
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'public')
+    },
+    compress: true,
+    port: 8080
+  }
 }

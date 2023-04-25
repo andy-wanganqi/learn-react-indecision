@@ -9,6 +9,7 @@ babel src/app.jsx --out-file=public/scripts/app.js --watch
 # Install webpack
 npm install -D webpack webpack-cli
 npm install -D babel-loader
+npm install -D webpack-dev-server
 
 # Install React
 npm install react react-dom
