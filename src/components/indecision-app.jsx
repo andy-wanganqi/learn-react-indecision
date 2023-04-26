@@ -3,10 +3,12 @@ import Header from './header.jsx'
 import Action from './action.jsx'
 import Options from './options.jsx'
 import OptionForm from './option-form.jsx'
+import OptionModal from "./option-modal.jsx"
 
 class IndecisionApp extends React.Component {
   state = {
-    options: []
+    options: [],
+    selectedOption: undefined
   }
   componentDidMount() {
     console.log('IndecisionApp', 'componentDidMount')
@@ -37,8 +39,10 @@ class IndecisionApp extends React.Component {
   handleMakeDecision = () => {
     if (this.isOptionsValid()) {
       const pickIndex = Math.floor(Math.random() * this.state.options.length);
-      const option = this.state.options[pickIndex];
-      alert(option);
+      const selectedOption = this.state.options[pickIndex];
+      this.setState(() => ({
+        selectedOption
+      }))
     }
   }
   handleRemoveAllOptions = () => {
@@ -67,16 +71,30 @@ class IndecisionApp extends React.Component {
       })
     }
   }
+  handleCloseOptionModal = () => {
+    this.setState(() => ({
+      selectedOption: undefined
+    }))
+  }
   render() {
     return (
       <div>
         <Header />
-        <Action isOptionsValid={this.isOptionsValid()} handleMakeDecision={this.handleMakeDecision}/>
+        <Action 
+          isOptionsValid={this.isOptionsValid()} 
+          handleMakeDecision={this.handleMakeDecision}
+        />
         <Options options={this.state.options}
           handleRemoveAllOptions={this.handleRemoveAllOptions} 
           handleRemoveOption={this.handleRemoveOption}
         />
-        <OptionForm handleAddOption={this.handleAddOption}/>
+        <OptionForm 
+          handleAddOption={this.handleAddOption}
+        />
+        <OptionModal 
+          selectedOption={this.state.selectedOption}
+          handleCloseOptionModal={this.handleCloseOptionModal}
+        />
       </div>
     )
   }
