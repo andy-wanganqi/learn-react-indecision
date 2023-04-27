@@ -13,3 +13,7 @@ npm install -D webpack-dev-server
 
 # Install React
 npm install react react-dom
+
+# Install style loaders
+npm install style-loader css-loader
+npm install sass-loader node-sass
