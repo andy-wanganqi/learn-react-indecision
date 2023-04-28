@@ -17,3 +17,6 @@ npm install react react-dom
 # Install style loaders
 npm install style-loader css-loader
 npm install sass-loader node-sass
+
+# Install normalize.css
+npm install normalize.css

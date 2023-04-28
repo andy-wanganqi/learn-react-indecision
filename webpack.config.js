@@ -19,12 +19,10 @@ module.exports = {
       exclude: /node_modules/
     }, {
       use: ['style-loader', 'css-loader'],
-      test: /\.css$/,
-      exclude: /node_modules/
+      test: /\.css$/
     }, {
       use: ['style-loader', 'css-loader', 'sass-loader'],
-      test: /\.scss$/,
-      exclude: /node_modules/
+      test: /\.scss$/
     }]
   },
   devtool: 'source-map',
