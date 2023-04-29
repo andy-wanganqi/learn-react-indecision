@@ -10,7 +10,10 @@ const Options = (props) => props.options.length > 0
           props.options.map((option) => <Option key={option} option={option} handleRemoveOption={props.handleRemoveOption} />)
         }
       </div>
-      <button onClick={props.handleRemoveAllOptions}>Remove All</button>
+      <button 
+        className="button button--link"
+        onClick={props.handleRemoveAllOptions}
+      >Remove All</button>
     </div> 
   )
   : (
