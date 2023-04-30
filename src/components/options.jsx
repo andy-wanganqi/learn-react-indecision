@@ -16,9 +16,16 @@ const Options = (props) => (
         <p>Please add an option to get started.</p>
       </div>
     }
-    
+
     {
-      props.options.map((option) => <Option key={option} option={option} handleRemoveOption={props.handleRemoveOption} />)
+      props.options.map((option, index) => (
+        <Option 
+          key={option} 
+          option={option} 
+          index={index}
+          handleRemoveOption={props.handleRemoveOption} 
+        />
+      ))
     }
   </div>
 )

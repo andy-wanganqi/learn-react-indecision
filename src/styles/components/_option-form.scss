@@ -1,0 +1,21 @@
+.option-form-error {
+  color: $off-white;
+  font-style: italic;
+  padding: $size-1;
+  margin: 0;
+}
+
+.option-form {
+  display: flex;
+  padding: $size-1;
+}
+
+.option-form__input {
+  color: $off-white;
+  background: $dark-blue;
+  border: none;
+  border-bottom: .3rem solid darken($dark-blue, 10%);
+  margin-right: $size-0;
+  padding: $size-0;
+  flex-grow: 1;
+}
