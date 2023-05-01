@@ -41,7 +41,8 @@ class IndecisionApp extends React.Component {
       const pickIndex = Math.floor(Math.random() * this.state.options.length);
       const selectedOption = this.state.options[pickIndex];
       this.setState(() => ({
-        selectedOption
+        selectedOption,
+        isModalOpen: true
       }))
     }
   }
@@ -73,7 +74,7 @@ class IndecisionApp extends React.Component {
   }
   handleCloseOptionModal = () => {
     this.setState(() => ({
-      selectedOption: undefined
+      isModalOpen: false
     }))
   }
   render() {
@@ -96,6 +97,7 @@ class IndecisionApp extends React.Component {
           </div>
         </div>
         <OptionModal 
+          isOpen={this.state.isModalOpen}
           selectedOption={this.state.selectedOption}
           handleCloseOptionModal={this.handleCloseOptionModal}
         />
