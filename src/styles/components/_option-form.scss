@@ -7,6 +7,7 @@
 
 .option-form {
   display: flex;
+  flex-direction: row;
   padding: $size-1;
 }
 
@@ -18,4 +19,15 @@
   margin-right: $size-0;
   padding: $size-0;
   flex-grow: 1;
+}
+
+@media (max-width: $desktop-breakpoint) {
+  .option-form {
+    flex-direction: column; 
+  }
+
+  .option-form__input {
+    margin-right: 0;
+    margin-bottom: $size-0;
+  }
 }
